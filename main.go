@@ -56,8 +56,9 @@ func main() {
 		// Get the fingerprint
 		fp := ssh.FingerprintSHA256(pk)
 
-		// output key information
-		keyInfoStr := fmt.Sprintf("%s,%s\n", comment, fp)
+		// output key information:
+		// name (filename), comment, fingerprint
+		keyInfoStr := fmt.Sprintf("%s,%s,%s\n", filepath.Base(kf), comment, fp)
 		_, err = fd.WriteString(keyInfoStr)
 		if err != nil {
 			log.Fatal(err)
